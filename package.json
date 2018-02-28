@@ -4,10 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next",
-    "precommit": "lint-staged",
-    "build": "next start",
-    "start": "next build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "lint-staged": {
@@ -20,9 +16,6 @@
   "author": "annetrent1",
   "license": "MIT",
   "dependencies": {
-    "next": "^5.0.0",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
     "tracker": "0.0.0"
   },
   "devDependencies": {
