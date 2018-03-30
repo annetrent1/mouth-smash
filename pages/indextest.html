@@ -33,36 +33,76 @@
       <div class="mouthsmash-container">
         <h1>MouthSmash</h1>
         <div id="mouthsmash-window">
-          <video id="video" width="640" height="480" preload autoplay loop muted></video>
-          <canvas id="canvas" width="640" height="480"></canvas>
+          <video id="video" width="704" height="528" preload autoplay loop muted></video>
+          <canvas id="canvasTrack" width="704" height="528"></canvas>
+          <canvas id="canvasCircle" width="704" height="528"></canvas>
         </div>
       </div>
 
       <script>
           window.onload = function() {
             var video = document.getElementById('video');
-            var canvas = document.getElementById('canvas');
-            var context = canvas.getContext('2d');
+            var canvasTrack = document.getElementById('canvasTrack');
+            var canvasCircle = document.getElementById('canvasCircle');
+            var context = canvasTrack.getContext('2d');
+            var circ = canvasCircle.getContext('2d');
+            var x = Math.floor(Math.random() * canvasCircle.width);
+            var y = canvasCircle.height-30;
+            var dx = 1;
+            var dy = 1;
+            var xMax = canvasTrack.width
+            var yMax = canvasTrack.height
 
+            function drawCircle() {
+              circ.clearRect(0, 0, canvasCircle.width, canvasCircle.height)
+              if(y == 0) {
+                y = canvasCircle.height-30;
+                x = Math.floor(Math.random() * canvasCircle.width);
+              }
+                circ.beginPath();
+                circ.arc(x, y, 30, 0, Math.PI*2);
+                circ.fillStyle = "#0095DD";
+                circ.fill();
+                circ.closePath();
+                x += dx
+                y += dy
+
+                if (x < 10 || x > xMax) {
+                  dx *= -1
+                }
+                if (y < 10 || y > yMax) {
+                  dy *= -1
+                }
+            }
+
+            function checkDistance() {
+
+            }
+
+            function gameLoop() {
+              drawCircle()
+              checkDistance()
+            }
             // The tracker tracks mouths but the mouth has to be close to the camera
-            var tracker = new tracking.ObjectTracker(['mouth']);
-            tracker.setInitialScale(3);
+            var tracker = new tracking.ObjectTracker('mouth');
+            tracker.setInitialScale(2);
             tracker.setStepSize(2);
             tracker.setEdgesDensity(.1);
 
             tracking.track('#video', tracker, { camera: true });
+            setInterval(gameLoop, 10)
 
             tracker.on('track', function(event) {
               // We need to draw our objects in here I think.
-              context.clearRect(0, 0, canvas.width, canvas.height);
+              context.clearRect(0, 0, canvasTrack.width, canvasTrack.height);
 
               event.data.forEach(function(rect) {
                 context.strokeStyle = '#a64ceb';
                 context.strokeRect(rect.x, rect.y, rect.width, rect.height);
                 context.font = '11px Helvetica';
                 context.fillStyle = "#fff";
-                context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
                 context.fillText('y: ' + rect.y + 'px', rect.x + rect.width + 5, rect.y + 22);
+                context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11);
               });
             });
 
