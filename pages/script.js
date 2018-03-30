@@ -4,6 +4,7 @@ window.onload = function() {
   var canvasCircle = document.getElementById('canvasCircle');
   var context = canvasTrack.getContext('2d');
   var circ = canvasCircle.getContext('2d');
+  var displayPoints = document.getElementById('points');
   var x = Math.floor(Math.random() * canvasCircle.width);
   var y = canvasCircle.height-30;
   var dx = 1;
@@ -13,7 +14,16 @@ window.onload = function() {
   var mouthX = 0
   var mouthY = 0
   var close = 40
+  var isEaten = false
+  var points = 0;
+
   function drawCircle() {
+    if (isEaten) {
+      x = Math.floor(Math.random() * canvasCircle.width);
+      y = canvasCircle.height-30;
+      isEaten = false
+      points++
+    }
     circ.clearRect(0, 0, canvasCircle.width, canvasCircle.height)
     if(y == 0) {
       y = canvasCircle.height-30;
@@ -38,13 +48,17 @@ window.onload = function() {
   function checkDistance() {
     if(x - mouthX < close && y - mouthY < close) {
       console.log("Om nom nom")
+      isEaten = true
     }
-    console.log("X = " + x + " Mouth X = " + mouthX )
   }
 
   function gameLoop() {
     drawCircle()
     checkDistance()
+    circ.font="30px Comic Sans MS"
+    circ.fillStyle = "black"
+    circ.align = "left"
+    circ.fillText(points, 50, 50)
   }
   // The tracker tracks mouths but the mouth has to be close to the camera
   var tracker = new tracking.ObjectTracker('mouth')
