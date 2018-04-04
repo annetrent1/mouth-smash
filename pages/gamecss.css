@@ -1,7 +1,5 @@
 #canvas {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+    margin: auto;
     width: 40%;
 }
 
@@ -14,6 +12,7 @@ canvas {
     margin: 0px;
     position: absolute;
     border: 5px solid black;
+    text-align: center;
 }
 
 h1 {
@@ -21,6 +20,7 @@ h1 {
     font-size: 50px;
     text-align: center;
     color: aliceblue;
+    margin: 0px;
 }
 
 p {
@@ -30,5 +30,23 @@ p {
 }
 
 body {
-    background-color: dimgray
+    background-color: dimgray;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#wrapper {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 42%;
+}
+
+#start {
+    margin-top:550px;
+    position: absolute;
+    background-color: aliceblue;
+    color: dimgray;
+    padding: 7px 16px;
+    border: 2px solid black;
 }

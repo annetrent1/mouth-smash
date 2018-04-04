@@ -1,4 +1,5 @@
-window.onclick = function() {
+
+function start() {
     var cursorCanvas = document.querySelector("#myCanvas");
     var cursorContext = cursorCanvas.getContext("2d");
 
@@ -58,11 +59,11 @@ window.onclick = function() {
 
       //Main draw function to draw everything on the screen
       function drawCircles() {
-        for (var i = 0; i < 10; i++) {
-          var randomX = Math.round(-200 + Math.random() * 700);
-          var randomY = Math.round(-200 + Math.random() * 700);
+        for (var i = 0; i < 20; i++) {
+          var randomX = Math.round(Math.random() * 704);
+          var randomY = Math.round(-100 + Math.random() * 528);
           var speed = 0.2 + Math.random() * 3;
-          var size = 5 + Math.random() * 100;
+          var size = 5 + Math.random() * 50;
    
           var circle = new Circle(100, speed, size, randomX, randomY);
           circles.push(circle);
@@ -75,7 +76,7 @@ window.onclick = function() {
         cursorContext.clearRect(0, 0, cursorCanvas.width, cursorCanvas.height);
 
         cursorContext.beginPath();
-        cursorContext.arc(mouseX, mouseY, 10, 0, 2 * Math.PI, true);
+        cursorContext.arc(mouseX, mouseY, 30, 0, 2 * Math.PI, true);
         cursorContext.fillStyle = "#FF6A6A";
         cursorContext.fill();
         cursorContext.lineWidth = 1;
