@@ -59,10 +59,12 @@ window.onload = function() {
     circ.fillStyle = "black"
     circ.align = "left"
     circ.fillText(points, 50, 50)
+    mouthX = -1
+    mouthY = -1
   }
   // The tracker tracks mouths but the mouth has to be close to the camera
   var tracker = new tracking.ObjectTracker('mouth')
-  tracker.setInitialScale(3)
+  tracker.setInitialScale(2)
   tracker.setStepSize(2)
   tracker.setEdgesDensity(.1)
 
@@ -84,7 +86,7 @@ window.onload = function() {
       context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11)
     });
   });
-  setInterval(gameLoop, 10)
+  setInterval(gameLoop, .1)
   var gui = new dat.GUI()
   gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01)
   gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1)
