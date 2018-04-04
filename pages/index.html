@@ -1,28 +1,26 @@
 <!doctype html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <title>MouthSmash - Catch stuff in your mouth</title>
-  <link rel="stylesheet" href="index.css">
+  <head>
+    <meta charset="utf-8">
+    <title>MouthSmash - Catch stuff in your mouth</title>
+    <link rel="stylesheet" href="index.css">
 
-  <script src="../build/tracking-min.js"></script>
-  <script src="../build/data/face-min.js"></script>
-  <script src="../build/data/mouth-min.js"></script>
-   <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
-  <script src="assets/stats.min.js"></script>
-  <script src="script.js"></script>
+    <script src="../build/tracking-min.js"></script>
+    <script src="../build/data/face-min.js"></script>
+    <script src="../build/data/mouth-min.js"></script>
+    <script src="../node_modules/dat.gui/build/dat.gui.min.js"></script>
+    <script src="assets/stats.min.js"></script>
+    <script src="script.js"></script>
 
-
-</head>
-<body>
-      <div class="mouthsmash-container">
-        <h1>MouthSmash</h1>
-        <div id="mouthsmash-window">
-          <video id="video" width="704" height="528" preload autoplay loop muted></video>
-          <canvas id="canvasTrack" width="704" height="528"></canvas>
-          <canvas id="canvasCircle" width="704" height="528"></canvas>
+  </head>
+  <body>
+        <div class="mouthsmash-container">
+          <h1>MouthSmash</h1>
+          <div id="mouthsmash-window">
+            <video id="video" width="704" height="528" preload autoplay loop muted></video>
+            <canvas id="canvasTrack" width="704" height="528"></canvas>
+            <canvas id="canvasCircle" width="704" height="528"></canvas>
+          </div>
         </div>
-      </div>
-      <p id="points">Hello</p>
-</body>
+  </body>
 </html>

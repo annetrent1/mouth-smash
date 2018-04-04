@@ -4,11 +4,24 @@
   margin-right: auto;
   width: 40%;
 }
-video, canvas {
+
+video {
+  margin: 0px;
+  position: absolute;
+  border: 2px solid black;
+  background-color: black;
+}
+
+canvas {
   margin: 0px;
   position: absolute;
   border: 2px solid black;
 }
+
 h1 {
   text-align: center;
+}
+
+body {
+  background-color: dimgray
 }
