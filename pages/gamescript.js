@@ -67,6 +67,7 @@ function start() {
               circleSize += 4
           }
           else {
+            points--
             if (mouseWidth > 8) // Decrease mouse size
               mouseWidth -= 5
             this.isEaten = true
@@ -165,15 +166,17 @@ function start() {
             circleContext.font="50px Comic Sans MS"
             circleContext.fillStyle = "black"
             circleContext.align = "left"
-            if(!numCircles) {
+            if(!numCircles && points > 0) {
               circleContext.fillText("Congratulations!!! You won!!!", xMax /4, yMax/2)
+              this.myCanvas.style.cursor = "auto"
             }
-            else {
+            else if(points < 0) {
               circleContext.fillText("¡¡¡Por Que!!! You lost!!!", 380, yMax/2)
+              this.myCanvas.style.cursor = "auto"
+            } else {
+              requestAnimationFrame(update);
             }
-            this.myCanvas.style.cursor = "auto"
           }
-
         }
 
 
