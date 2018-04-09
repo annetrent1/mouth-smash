@@ -10,7 +10,15 @@
     <body>
         <h1>Mouth Smash</h1>
         <p>Click the screen to begin</p>
-        <div id="points">Points: </div>
-        <canvas id="myCanvas" width="1200" height="600"></canvas>
+        <div id="pointsContainer">
+          <p id="points">Points: </p>
+          <!--<p id="points"> </p>-->
+        </div>
+        <div id="canvas">
+            <canvas id="myCanvas" width="1200" height="600"></canvas>
+        </div>
+        <div id="wrapper">
+            <button id="start" onclick="start()" type="button">Start</button>
+        </div>
     </body>
 </html>
