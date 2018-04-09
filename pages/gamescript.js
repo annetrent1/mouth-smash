@@ -18,6 +18,10 @@ window.onclick = function() {
     var points = 0
     var circleSize = 40
     var numCircles = 20
+    var maxCircles = 50
+    var mouseMax = 70
+    var maxCircleSize = 80
+    var minCircleSize = 30
 
     cursorCanvas.addEventListener("mousemove", setMousePosition, false);
 
@@ -47,26 +51,30 @@ window.onclick = function() {
 
         let xval = Math.abs(this.xPos - mouseX);
         let yval = Math.abs(this.yPos - mouseY);
+        // Checks distance of mouth and bubble
         if(xval < this.width + mouseWidth && yval < this.width + mouseWidth) {
           if(mouseWidth > this.width) {
-            console.log(xval, yval, this.width)
             this.isEaten = true
-            if (mouseWidth < 80)
+            if (mouseWidth < mouseMax) // Make mouse circle bigger until max
               mouseWidth += 2
             points++
-            addCircle()
+            if (numCircles < maxCircles && circleSize < maxCircleSize) // Only add circles if mouse is not at max
+              addCircle()
+            if(circleSize < maxCircleSize) // Increase circle sizes
+              circleSize += 4
           }
           else {
-            console.log("dead")
-            if (mouseWidth > 5){
+            if (mouseWidth > 8) // Decrease mouse size
               mouseWidth -= 5
-              this.isEaten = true
+            this.isEaten = true
+            if (circleSize > minCircleSize) // Decrease Circle sizes
+              circleSize -= 5
+            if(numCircles < maxCircles) { // add more circles
+              addCircle()
               addCircle()
             }
-
           }
         }
-
       }
 
     drawCircles()
@@ -95,8 +103,11 @@ window.onclick = function() {
           var circle = new Circle(speed, size, randomX, randomY);
           circles.push(circle);
         }
-        numCircles = 0
         update();
+      }
+      
+      function getSize() {
+
       }
 
       function addCircle() {
@@ -107,6 +118,7 @@ window.onclick = function() {
 
           var circle = new Circle(speed, size, randomX, randomY);
           circles.push(circle);
+          numCircles++
       }
 
       //Function to draw the object cursor on the canvas
@@ -125,7 +137,7 @@ window.onclick = function() {
     // function to update circles per frame
     function update() {
         drawCursor();
-        pointArea = points
+        pointArea = "Points: Mine"
         for (var i = 0; i < circles.length; i++) {
             var myCircle = circles[i];
             myCircle.update();
@@ -135,6 +147,7 @@ window.onclick = function() {
 
           if(circles[j].isEaten) {
               circles.splice(j, 1)
+              numCircles--
           }
         }
         requestAnimationFrame(update);

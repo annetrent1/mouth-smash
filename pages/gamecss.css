@@ -12,7 +12,7 @@ h1 {
     text-align: center;
     color: aliceblue;
 }
-p {
+p, #points {
     font-family: fantasy;
     text-align: center;
     color: aliceblue;
