@@ -4,7 +4,6 @@ window.onload = function() {
   var canvasCircle = document.getElementById('canvasCircle');
   var context = canvasTrack.getContext('2d');
   var circ = canvasCircle.getContext('2d');
-  var displayPoints = document.getElementById('points');
   var x = Math.floor(Math.random() * canvasCircle.width);
   var y = canvasCircle.height-30;
   var dx = 1;
@@ -86,7 +85,9 @@ window.onload = function() {
       context.fillText('x: ' + rect.x + 'px', rect.x + rect.width + 5, rect.y + 11)
     });
   });
-  setInterval(gameLoop, .1)
+
+  setInterval(gameLoop, 1)
+
   var gui = new dat.GUI()
   gui.add(tracker, 'edgesDensity', 0.1, 0.5).step(0.01)
   gui.add(tracker, 'initialScale', 1.0, 10.0).step(0.1)

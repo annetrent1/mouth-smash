@@ -1,0 +1,23 @@
+
+#myCanvas {
+    background-color: aliceblue;
+    margin: 0 auto;
+    border: 5px solid black;
+    display: block;
+}
+
+h1 {
+    font-family: fantasy;
+    font-size: 50px;
+    text-align: center;
+    color: aliceblue;
+}
+p {
+    font-family: fantasy;
+    text-align: center;
+    color: aliceblue;
+}
+
+body {
+    background-color: dimgray
+}
