@@ -53,7 +53,7 @@ window.onclick = function() {
         let yval = Math.abs(this.yPos - mouseY);
         // Checks distance of mouth and bubble
         if(xval < this.width + mouseWidth && yval < this.width + mouseWidth) {
-          if(mouseWidth > this.width) {
+          if(mouseWidth >= this.width) {
             this.isEaten = true
             if (mouseWidth < mouseMax) // Make mouse circle bigger until max
               mouseWidth += 2
@@ -105,7 +105,7 @@ window.onclick = function() {
         }
         update();
       }
-      
+
       function getSize() {
 
       }
