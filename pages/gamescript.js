@@ -1,11 +1,11 @@
-window.onclick = function() {
+function start() {
     var cursorCanvas = document.querySelector("#myCanvas")
     var cursorContext = cursorCanvas.getContext("2d")
 
     var circleCanvas = document.querySelector("#myCanvas")
     var circleContext = circleCanvas.getContext('2d')
     this.myCanvas.style.cursor = "none"
-    var pointArea = document.getElementById("points").innerHTML
+    var pointArea = document.getElementById("points")
 
     var circles = [];
 
@@ -21,7 +21,7 @@ window.onclick = function() {
 
     cursorCanvas.addEventListener("mousemove", setMousePosition, false);
 
-    //Implementation of Circle object to fordraw params
+    //Implementation of Circle object for draw params
     Circle.prototype.update = function() {
         circleContext.beginPath();
         this.xPos = this.xPos + this.dx
@@ -125,7 +125,7 @@ window.onclick = function() {
     // function to update circles per frame
     function update() {
         drawCursor();
-        pointArea = points
+        pointArea.innerHTML = points.toString();
         for (var i = 0; i < circles.length; i++) {
             var myCircle = circles[i];
             myCircle.update();

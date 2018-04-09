@@ -21,3 +21,18 @@ p {
 body {
     background-color: dimgray
 }
+
+#wrapper {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 42%;
+}
+
+#start {
+    margin-top:15px;
+    background-color: aliceblue;
+    color: dimgray;
+    padding: 7px 16px;
+    border: 2px solid black;
+}
