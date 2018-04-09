@@ -24,6 +24,7 @@ function start() {
     var mouseMax = 70
     var maxCircleSize = 80
     var minCircleSize = 30
+    var highScore = 0//document.getElementById("#high").innerHTML
 
 
     cursorCanvas.addEventListener("mousemove", setMousePosition, false);
@@ -67,6 +68,7 @@ function start() {
               circleSize += 4
           }
           else {
+            points--
             if (mouseWidth > 8) // Decrease mouse size
               mouseWidth -= 5
             this.isEaten = true
@@ -143,7 +145,6 @@ function start() {
         drawCursor();
         var smallest = 100
         var smallestComp = 100
-        pointArea.innerHTML = points.toString();
         for (var i = 0; i < circles.length; i++) {
             smallestComp = circles[i].width
             if (smallestComp < smallest)
@@ -165,14 +166,19 @@ function start() {
             circleContext.font="50px Comic Sans MS"
             circleContext.fillStyle = "black"
             circleContext.align = "left"
-            if(!numCircles) {
+            if(!numCircles && points > 0) {
               circleContext.fillText("Congratulations!!! You won!!!", xMax /4, yMax/2)
             }
-            else {
+            else if(points < 0){
               circleContext.fillText("¡¡¡Por Que!!! You lost!!!", 380, yMax/2)
+            }
+            else {
+              requestAnimationFrame(update);
             }
             this.myCanvas.style.cursor = "auto"
           }
+          pointArea.innerHTML = "Points: " + points.toString();
+          console.log(highScore)
 
         }
 
@@ -195,7 +201,7 @@ function start() {
         }
         return {
             x: xPosition,
-            y: yPosition - 130
+            y: yPosition
         }
     }
 
