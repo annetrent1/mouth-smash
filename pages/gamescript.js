@@ -137,8 +137,14 @@ function start() {
     // function to update circles per frame
     function update() {
         drawCursor();
+        var smallest = 100
+        var smallestComp = 100
         pointArea.innerHTML = points.toString();
         for (var i = 0; i < circles.length; i++) {
+            smallestComp = circles[i].width
+            console.log("Comp = " + smallestComp)
+            if (smallestComp < smallest)
+              smallest = smallestComp
             var myCircle = circles[i];
             myCircle.update();
         }
@@ -150,8 +156,23 @@ function start() {
               numCircles--
           }
         }
-        requestAnimationFrame(update);
-    }
+        console.log("Smallest = " + smallest)
+        if (numCircles && smallest < mouseWidth)
+          requestAnimationFrame(update);
+        else {
+            circleContext.font="50px Comic Sans MS"
+            circleContext.fillStyle = "black"
+            circleContext.align = "left"
+            if(!numCircles) {
+              circleContext.fillText("Congratulations!!! You won!!!", xMax /4, yMax/2)
+            }
+            else {
+              circleContext.fillText("Por Que!!! You lost!!!", xMax /3.8, yMax/2)
+            }
+          }
+
+        }
+
 
     //Sets the cursor circle position to the mouse's position
     function setMousePosition(e) {
