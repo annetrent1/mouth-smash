@@ -171,6 +171,7 @@ function start() {
             else {
               circleContext.fillText("¡¡¡Por Que!!! You lost!!!", 380, yMax/2)
             }
+            this.myCanvas.style.cursor = "auto"
           }
 
         }
@@ -194,7 +195,7 @@ function start() {
         }
         return {
             x: xPosition,
-            y: yPosition
+            y: yPosition - 130
         }
     }
 
