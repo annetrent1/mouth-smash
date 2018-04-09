@@ -8,7 +8,9 @@ function start() {
     var pointArea = document.getElementById("points")
 
     var circles = [];
-
+    var colors = ['rgba(185, 211, 238,', 'rgba(63, 191, 63,', 'rgba(191, 63, 191,', 'rgba(191, 191, 63,', 'rgba(127, 63, 191,' , 'rgb(193, 66, 66' ]
+    var numColors = colors.length
+    var mouseColor = 'rgb(193, 66, 66,'
     var canvasPos = getPosition(cursorCanvas);
     var mouseX = 0;
     var mouseY = 0;
@@ -22,6 +24,7 @@ function start() {
     var mouseMax = 70
     var maxCircleSize = 80
     var minCircleSize = 30
+
 
     cursorCanvas.addEventListener("mousemove", setMousePosition, false);
 
@@ -43,7 +46,7 @@ function start() {
         circleContext.closePath();
 
 
-        circleContext.fillStyle = 'rgba(185, 211, 238,' + this.opacity + ')';
+        circleContext.fillStyle = this.color + this.opacity + ')';
         circleContext.fill();
         circleContext.lineWidth = 1;
         circleContext.strokeStyle = "black"
@@ -89,6 +92,7 @@ function start() {
         this.dy = Math.floor(Math.random() * 2) + 1
         this.opacity = 0.05 + Math.random() * 0.5;
         this.isEaten = false
+        this.color = colors[Math.floor(Math.random() * numColors - 1)]
 
       }
 
@@ -127,7 +131,7 @@ function start() {
 
         cursorContext.beginPath();
         cursorContext.arc(mouseX, mouseY, mouseWidth, 0, 2 * Math.PI, true);
-        cursorContext.fillStyle = "#FF6A6A";
+        cursorContext.fillStyle = '#FF6A6A'
         cursorContext.fill();
         cursorContext.lineWidth = 1;
         cursorContext.strokeStyle = "black"
@@ -142,7 +146,6 @@ function start() {
         pointArea.innerHTML = points.toString();
         for (var i = 0; i < circles.length; i++) {
             smallestComp = circles[i].width
-            console.log("Comp = " + smallestComp)
             if (smallestComp < smallest)
               smallest = smallestComp
             var myCircle = circles[i];
@@ -156,7 +159,6 @@ function start() {
               numCircles--
           }
         }
-        console.log("Smallest = " + smallest)
         if (numCircles && smallest < mouseWidth)
           requestAnimationFrame(update);
         else {
@@ -167,7 +169,7 @@ function start() {
               circleContext.fillText("Congratulations!!! You won!!!", xMax /4, yMax/2)
             }
             else {
-              circleContext.fillText("Por Que!!! You lost!!!", xMax /3.8, yMax/2)
+              circleContext.fillText("¡¡¡Por Que!!! You lost!!!", 380, yMax/2)
             }
           }
 
